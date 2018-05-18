@@ -1,0 +1,197 @@
+.list-graph .context-menu {
+  display: none;
+  opacity: 0;
+
+  &.transitionable {
+    display: block;
+    transition: all $transition-lightning-fast $ease-in-out-cubic;
+  }
+
+  &.open {
+    opacity: 1;
+  }
+
+  >.bg-outer-wrapper {
+    .bg {
+      fill: $white;
+    }
+
+    .bgBorder {
+      fill: $black;
+      fill-opacity: 0.1;
+    }
+
+    .bg-inner-wrapper {
+      // Normally `scale(1,1)` should be regarded as the default value but when
+      // the class `is-mirrored-horizontally` is removed dynamically this won't
+      // load to a re-draw. Hence, we need to explicitely set the scale.
+      transform: scale(1, 1);
+
+      // Normally we would just use `transform-origin: 50% 50%;` but FF doesn't
+      // support relative values for SVG elements...
+      // transform-origin: 50% 50%;
+
+      // We also need this to avoid having to extend the base class with
+      // `!important`.
+      &.is-mirrored-horizontally {
+        transform: scale(1, -1);
+      }
+    }
+  }
+
+  .button .bg {
+    fill: $grey-lightest;
+    transition: all $transition-lightning-fast $ease-in-out-cubic;
+  }
+
+  .button .bg-fill-effect {
+    fill: transparentize($color-highlight-blue, 0.5);
+    opacity: 0;
+    transition: opacity $transition-lightning-fast $ease-in-out-cubic;
+  }
+
+  .button.fill-effect .bg-fill-effect {
+    opacity: 1;
+  }
+
+  .button .bam-effect {
+    opacity: 0;
+
+    .bam-effect-bg {
+      fill: $color-highlight-blue;
+    }
+  }
+
+  .button .bam-effect.trigger {
+    animation: bam-effect $transition-slow $ease-in-out-quadric;
+  }
+
+  .toggler {
+    opacity: 0;
+    cursor: pointer;
+    transition: all $transition-lightning-fast $ease-in-out-cubic;
+
+    &:hover {
+      color: $color-highlight-blue;
+      opacity: 1 !important;
+    }
+  }
+
+  &:hover .toggler {
+    opacity: 0.33;
+  }
+
+  .toggler > .bg {
+    fill: white;
+    opacity: 0.9;
+  }
+
+  @keyframes bam-effect {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.33);
+    }
+  }
+
+  .component .label-wrapper {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &.unselectable,
+    &.unselectable * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .label,
+    .label-two,
+    .separator {
+      color: $text-color-normal-rgba;
+      font-size: 0.75rem;
+
+      &.inactive {
+        color: $text-color-inactive-rgba;
+      }
+    }
+  }
+
+  .component.text-field .label,
+  .component.text-field .separator {
+    font-weight: bold;
+  }
+
+  .component .separator {
+    padding-right: 0.25rem;
+  }
+
+  .button:hover {
+    cursor: pointer;
+
+    .bg {
+      fill: $grey-light;
+    }
+
+    .label,
+    .label-two {
+      color: $text-color-semi-highlight-rgba;
+    }
+  }
+
+  .button.semi-active:hover .bg {
+    fill: $grey-lightest;
+  }
+
+  .checkbox {
+    .icon-unchecked {
+      opacity: 0.66;
+    }
+
+    &.checked .icon-unchecked {
+      opacity: 0;
+    }
+
+    .icon-checked {
+      opacity: 0;
+    }
+
+    &.checked .icon-checked {
+      opacity: 1;
+    }
+
+    .checkbox-bg {
+      fill: $white;
+    }
+
+    .checkbox-knob {
+      fill: $grey-light;
+      transition: all $transition-lightning-fast $ease-in-out-cubic;
+    }
+  }
+
+  .button.semi-active {
+    .label,
+    .label-two {
+      color: $black;
+      font-weight: bold;
+    }
+
+    .checkbox-knob {
+      fill: $color-highlight-blue;
+    }
+  }
+
+  .button.semi-active.active .bg {
+    fill: transparentize($color-highlight-blue, 0.5);
+  }
+}
