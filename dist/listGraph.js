@@ -571,66 +571,7 @@ var Topbar = function () {
 
     this.globalPrecision = this.globalControls.append('li').attr('class', 'title').text('List Graph').classed('show', this.showTitle);
 
-    // Add button for sorting by precision
-    this.globalPrecision = this.globalControls.append('li').attr('class', 'control-btn sort-precision').classed('active', function () {
-      if (self.vis.currentSorting.global.type === 'precision') {
-        // Save currently active element. Needed when when re-sorting for the
-        // first time, to be able to de-highlight this element.
-        self.vis.currentSorting.global.el = d3.select(this);
-        return true;
-      }
-      return false;
-    }).on('click', function () {
-      self.sortAllColumns(this, 'precision');
-    }).on('mouseenter', function () {
-      _this.vis.interactionWrapper.call(_this.vis, function () {
-        _this.highlightBars(undefined, 'precision');
-      }, []);
-    }).on('mouseleave', function () {
-      _this.vis.interactionWrapper.call(_this.vis, function () {
-        _this.highlightBars(undefined, 'precision', true);
-      }, []);
-    });
 
-    this.globalPrecisionWrapper = this.globalPrecision.append('div').attr('class', 'wrapper');
-
-    this.globalPrecisionWrapper.append('span').attr('class', 'label').text('Precision');
-
-    this.globalPrecisionWrapper.append('svg').attr('class', 'icon-unsort invisible-default').classed('visible', this.vis.currentSorting.global.type !== 'precision').append('use').attr('xlink:href', this.vis.iconPath + '#unsort');
-
-    this.globalPrecisionWrapper.append('svg').attr('class', 'icon-sort-asc invisible-default').classed('visible', this.vis.currentSorting.global.type === 'precision' && this.vis.currentSorting.global.order === 1).append('use').attr('xlink:href', this.vis.iconPath + '#sort-asc');
-
-    this.globalPrecisionWrapper.append('svg').attr('class', 'icon-sort-desc invisible-default').classed('visible', this.vis.currentSorting.global.type === 'precision' && this.vis.currentSorting.global.order !== 1).append('use').attr('xlink:href', this.vis.iconPath + '#sort-desc');
-
-    // Add button for sorting by recall
-    this.globalRecall = this.globalControls.append('li').attr('class', 'control-btn sort-recall').classed('active', function () {
-      if (self.vis.currentSorting.global.type === 'recall') {
-        // See precision
-        self.vis.currentSorting.global.el = d3.select(this);
-        return true;
-      }
-      return false;
-    }).on('click', function () {
-      self.sortAllColumns(this, 'recall');
-    }).on('mouseenter', function () {
-      _this.vis.interactionWrapper.call(_this.vis, function () {
-        _this.highlightBars(undefined, 'recall');
-      }, []);
-    }).on('mouseleave', function () {
-      _this.vis.interactionWrapper.call(_this.vis, function () {
-        _this.highlightBars(undefined, 'recall', true);
-      }, []);
-    });
-
-    this.globalRecallWrapper = this.globalRecall.append('div').attr('class', 'wrapper');
-
-    this.globalRecallWrapper.append('span').attr('class', 'label').text('Recall');
-
-    this.globalRecallWrapper.append('svg').attr('class', 'icon-unsort invisible-default').classed('visible', this.vis.currentSorting.global.type !== 'recall').append('use').attr('xlink:href', this.vis.iconPath + '#unsort');
-
-    this.globalRecallWrapper.append('svg').attr('class', 'icon-sort-asc invisible-default').classed('visible', this.vis.currentSorting.global.type === 'recall' && this.vis.currentSorting.global.order === 1).append('use').attr('xlink:href', this.vis.iconPath + '#sort-asc');
-
-    this.globalRecallWrapper.append('svg').attr('class', 'icon-sort-desc invisible-default').classed('visible', this.vis.currentSorting.global.type === 'recall' && this.vis.currentSorting.global.order !== 1).append('use').attr('xlink:href', this.vis.iconPath + '#sort-desc');
 
     // Add button for sorting by name
     this.globalName = this.globalControls.append('li').attr('class', 'control-btn sort-name').classed('active', function () {
@@ -662,23 +603,8 @@ var Topbar = function () {
 
     this.globalNameWrapper.append('svg').attr('class', 'icon-sort-desc invisible-default').classed('visible', this.vis.currentSorting.global.type === 'name' && this.vis.currentSorting.global.order !== 1).append('use').attr('xlink:href', this.vis.iconPath + '#sort-alpha-desc');
 
-    // Add button for switching to 'one bar'
-    this.globalOneBar = this.globalControls.append('li').attr('class', 'control-btn one-bar').classed('active', this.vis.barMode === 'one').on('click', function () {
-      self.switchBarMode(this, 'one');
-    });
+  
 
-    this.globalOneBarWrapper = this.globalOneBar.append('div').attr('class', 'wrapper').text('One bar');
-
-    this.globalOneBarWrapper.append('svg').attr('class', 'icon-one-bar').append('use').attr('xlink:href', this.vis.iconPath + '#one-bar');
-
-    // Add button for switching to 'two bars'
-    this.globalTwoBars = this.globalControls.append('li').attr('class', 'control-btn two-bars').classed('active', this.vis.barMode === 'two').on('click', function () {
-      self.switchBarMode(this, 'two');
-    });
-
-    this.globalTwoBarsWrapper = this.globalTwoBars.append('div').attr('class', 'wrapper').text('Two bars');
-
-    this.globalTwoBarsWrapper.append('svg').attr('class', 'icon-two-bars').append('use').attr('xlink:href', this.vis.iconPath + '#two-bars');
 
     // Add button for zoom-out
     this.globalZoomOut = this.globalControls.append('li').attr('class', 'control-btn zoom-out').classed('active', this.vis.zoomedOut).on('click', function () {
@@ -2161,11 +2087,11 @@ var Bars = function () {
      */
 
   }, {
-    key: 'generateOneBarPath',
+   key: 'generateOneBarPath',
     value: function generateOneBarPath(data, sortBy) {
       var height = this.visData.global.row.contentHeight;
       var normValue = Math.min(data.value, 1) || 0;
-
+//console.log(data);
       var x = 0;
       var width = 2;
 
@@ -8630,7 +8556,7 @@ var ListGraph = function () {
 // Will be set by Gulp during the build process
 
 
-ListGraph.version = '1.1.7';
+ListGraph.version = '1.0';
 
 return ListGraph;
 

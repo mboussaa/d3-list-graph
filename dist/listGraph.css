@@ -470,7 +470,7 @@
   transition: all 0.2s cubic-bezier(0.3, 0.1, 0.6, 1); }
 
 .list-graph .bar-magnitude {
-  fill: #000;
+  fill: #FF0000;
   fill-opacity: 0.1;
   shape-rendering: crispEdges;
   stroke-width: 2px;

@@ -9,23 +9,8 @@
   <title>List Graph Prototype</title>
 </head>
 <body>
-  <h1>D3 List Graph <em id="version"></em></h1>
-  <h2>Small: 28 nodes <em onclick="toggleSize('#example-small')">[toggle size]</em></h2>
-  <div id="example-small" class="list-graph">
-    <div class="top-bar"></div>
-    <div class="wrapper"><svg class="base"></svg></div>
-  </div>
-  <h2>Medium: 100 nodes</h2>
-  <div id="example-medium" class="list-graph">
-    <div class="top-bar"></div>
-    <div class="wrapper"><svg class="base"></svg></div>
-  </div>
-  <h2>Large: 500 nodes</h2>
-  <div id="example-large" class="list-graph">
-    <div class="top-bar"></div>
-    <div class="wrapper"><svg class="base"></svg></div>
-  </div>
-  <h2>Larger: 1,000 nodes</h2>
+ <h1>Concept Dependency Graph <em id="version"></em></h1>
+  <h2>58 log sequences <em onclick="toggleSize('#example-extra-large')">[toggle size]</em></h2>
   <div id="example-extra-large" class="list-graph">
     <div class="top-bar"></div>
     <div class="wrapper"><svg class="base"></svg></div>
@@ -44,6 +29,7 @@
   <script src="../dist/d3.listGraph.js"></script>
   <script src="../dist/listGraph.js"></script>
   <script src="https://d3js.org/d3.v3.js"></script>
+
   <script>
     'use strict';
 
@@ -66,8 +52,8 @@
 
         graphs[selector].reRender({
           grid: {
-            columns: 4,
-            rows: 8
+            columns: 6,
+            rows: 40
           }
         });
       } else {
@@ -77,12 +63,16 @@
         graphs[selector].reRender({
           grid: {
             columns: 6,
-            rows: 12
+            rows: 20
           }
         });
       }
     }
-
+function range(start, stop, step){
+  var a=[start], b=start;
+  while(b<stop){b+=(step || 1);a.push(b)}
+  return a;
+};
     function createListGraph (querySelector, data, rootNodes) {
       return new ListGraph({
         d3: d3V4,
@@ -121,7 +111,7 @@
     d3.json('data.json', function (error, data) {
       if (error) throw error;
 
-      graphs['#example-small'] = createListGraph('#example-small', data, [1, 2]);
+      graphs['#example-small'] = createListGraph('#example-small', data, range(1,57,1));
 
       // setTimeout(function () {
       //   graphSmall.trigger('d3ListGraphFocusNodes', {
@@ -279,10 +269,10 @@
       graphs['#example-large'] = createListGraph('#example-large', data);
     });
 
-    d3.json('data-1000.json', function (error, data) {
+    d3.json('data.json', function (error, data) {
       if (error) throw error;
 
-      graphs['#example-extra-large'] = createListGraph('#example-extra-large', data);
+      graphs['#example-extra-large'] = createListGraph('#example-extra-large', data, range(0,56,1));
     });
 
     // d3.json('data-10000.json', function (error, data) {
