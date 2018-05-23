@@ -39,14 +39,14 @@ h2 em:hover {
 
 .list-graph {
   margin: 1em auto;
-  width: 800px;
+  width: 1400px;
   border: 1px solid #efefef;
 }
 
 .list-graph svg.base {
   display: block;
-  width: 800px;
-  height: 200px;
+  width: 1400px;
+  height: 600px;
 }
 
 .list-graph.bigger,
