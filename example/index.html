@@ -10,8 +10,15 @@
 </head>
 <body>
  <h1>Concept Dependency Graph <em id="version"></em></h1>
-  <h2>58 log sequences <em onclick="toggleSize('#example-extra-large')">[toggle size]</em></h2>
+  <h2>60 log sequences (Extended version)<em onclick="toggleSize('#example-extra-large')">[toggle size]</em></h2>
   <div id="example-extra-large" class="list-graph">
+    <div class="top-bar"></div>
+    <div class="wrapper"><svg class="base"></svg></div>
+  </div>
+  
+ 
+  <h2>60 log sequences <em onclick="toggleSize('#example-extreme')">[toggle size]</em></h2>
+  <div id="example-extreme" class="list-graph">
     <div class="top-bar"></div>
     <div class="wrapper"><svg class="base"></svg></div>
   </div>
@@ -63,7 +70,7 @@
         graphs[selector].reRender({
           grid: {
             columns: 6,
-            rows: 20
+            rows: 30
           }
         });
       }
@@ -108,171 +115,17 @@ function range(start, stop, step){
 
     var graphs = {};
 
-    d3.json('data.json', function (error, data) {
-      if (error) throw error;
-
-      graphs['#example-small'] = createListGraph('#example-small', data, range(1,57,1));
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphFocusNodes', {
-      //     nodeIds: ['2-2-1'],
-      //     zoomOut: true
-      //   });
-      // }, 1000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphFocusNodes', {
-      //     nodeIds: ['2-1-1-1-1'],
-      //     zoomOut: true
-      //   });
-      // }, 3000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphFocusNodes', {
-      //     nodeIds: ['2-3'],
-      //     hideUnrelatedNodes: true,
-      //     zoomOut: true
-      //   });
-      // }, 2000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphFocusNodes', {
-      //     nodeIds: ['2-3'],
-      //     hideUnrelatedNodes: true
-      //   });
-      // }, 3000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphFocusNodes', {
-      //     nodeIds: ['2-1-1-1'],
-      //     hideUnrelatedNodes: true
-      //   });
-      // }, 4000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphFocusNodes', {
-      //     nodeIds: ['2-3']
-      //   });
-      // }, 3000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphBlurNodes', {
-      //     nodeIds: ['2-3']
-      //   });
-      // }, 4000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphFocusNodes', {
-      //     nodeIds: ['2-3'],
-      //     zoomOut: true,
-      //     excludeClones: true
-      //   });
-      // }, 4000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphBlurNodes', {
-      //     nodeIds: ['2-3'],
-      //     zoomIn: true,
-      //     excludeClones: true
-      //   });
-      // }, 5000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphBlurNodes', {
-      //     nodeIds: ['2-1-1-1', '2-1-4', '1-2', '2-3-1'],
-      //     zoomIn: true
-      //   });
-      // }, 4000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphNodeLock', ['2-1']);
-      // }, 5000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphNodeUnlock', ['2-1']);
-      // }, 6000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphNodeRoot', ['1-2']);
-      // }, 7000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphNodeUnroot', ['1-2']);
-      // }, 8000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphNodeRoot', {
-      //     nodeIds: ['1-2']
-      //   });
-      // }, 1000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphActiveLevel', 1);
-      // }, 2000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphActiveLevel', 3);
-      // }, 3000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphNodeUnroot', {
-      //     nodeIds: ['1-2']
-      //   });
-      // }, 4000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphNodeRoot', {
-      //     nodeIds: ['1-2']
-      //   });
-      // }, 5000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphNodeUnroot', {
-      //     nodeIds: ['1-2']
-      //   });
-      // }, 6000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphActiveLevel', 2);
-      // }, 1000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphActiveLevel', 3);
-      // }, 2000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphActiveLevel', 4);
-      // }, 3000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphActiveLevel', 3);
-      // }, 4000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphActiveLevel', 2);
-      // }, 5000);
-
-      // setTimeout(function () {
-      //   graphSmall.trigger('d3ListGraphActiveLevel', 1);
-      // }, 6000);
-    });
-
-    d3.json('data-100.json', function (error, data) {
-      if (error) throw error;
-
-      graphs['#example-medium'] = createListGraph('#example-medium', data);
-    });
-
-    d3.json('data-500.json', function (error, data) {
-      if (error) throw error;
-
-      graphs['#example-large'] = createListGraph('#example-large', data);
-    });
-
+   
     d3.json('data.json', function (error, data) {
       if (error) throw error;
 
       graphs['#example-extra-large'] = createListGraph('#example-extra-large', data, range(0,59,1));
+    });
+	
+	 d3.json('data-short.json', function (error, data) {
+      if (error) throw error;
+
+      graphs['#example-extreme'] = createListGraph('#example-extreme', data, range(0,59,1));
     });
 
     // d3.json('data-10000.json', function (error, data) {
