@@ -10,7 +10,7 @@
 </head>
 <body>
  <h1>Concept Dependency Graph <em id="version"></em></h1>
-  <h2>60 log sequences </h2>
+  <h2>34 log sequences </h2>
   <h2>Logging Components (Extended version) </h2>
   <div id="example-extra-large" class="list-graph">
     <div class="top-bar"></div>
@@ -110,7 +110,7 @@ function range(start, stop, step){
     d3.json('data-long.json', function (error, data) {
       if (error) throw error;
 
-      graphs['#example-extra-large'] = createListGraph('#example-extra-large', data, range(0,59,1));
+      graphs['#example-extra-large'] = createListGraph('#example-extra-large', data, range(0,33,1));
     });
 	
 	 

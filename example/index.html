@@ -10,14 +10,14 @@
 </head>
 <body>
  <h1>Concept Dependency Graph <em id="version"></em></h1>
-  <h2>60 log sequences </h2>
+  <h2>34 log sequences </h2>
   <h2>Logging Components (Extended version) </h2>
   <div id="example-extra-large" class="list-graph">
     <div class="top-bar"></div>
     <div class="wrapper"><svg class="base"></svg></div>
   </div>
   
- 
+ <!--
   <h2>Logging Components </h2>
   <div id="example-extra-large1" class="list-graph">
     <div class="top-bar"></div>
@@ -35,7 +35,7 @@
     <div class="top-bar"></div>
     <div class="wrapper"><svg class="base"></svg></div>
   </div>
-<!--   <h2>Extreme: 10,000 nodes</h2>
+   <h2>Extreme: 10,000 nodes</h2>
   <div id="example-extreme" class="list-graph">
     <div class="top-bar"></div>
     <div class="wrapper"><svg class="base"></svg></div>
@@ -124,28 +124,28 @@ function range(start, stop, step){
     var graphs = {};
 
    
-    d3.json('data-long.json', function (error, data) {
+    d3.json('data.json', function (error, data) {
       if (error) throw error;
 
-      graphs['#example-extra-large'] = createListGraph('#example-extra-large', data, range(0,59,1));
+      graphs['#example-extra-large'] = createListGraph('#example-extra-large', data, range(0,33,1));
     });
 	
 	 d3.json('data-short.json', function (error, data) {
       if (error) throw error;
 
-      graphs['#example-extra-large1'] = createListGraph('#example-extra-large1', data, range(0,59,1));
+      graphs['#example-extra-large1'] = createListGraph('#example-extra-large1', data, range(0,33,1));
     });
 	
 	 d3.json('data-acdc-long.json', function (error, data) {
       if (error) throw error;
 
-      graphs['#example-extra-large2'] = createListGraph('#example-extra-large2', data, range(0,59,1));
+      graphs['#example-extra-large2'] = createListGraph('#example-extra-large2', data, range(0,33,1));
     });
 	
 	 d3.json('data-acdc-short.json', function (error, data) {
       if (error) throw error;
 
-      graphs['#example-extra-large3'] = createListGraph('#example-extra-large3', data, range(0,59,1));
+      graphs['#example-extra-large3'] = createListGraph('#example-extra-large3', data, range(0,33,1));
     });
 
     // d3.json('data-10000.json', function (error, data) {
